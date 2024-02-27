@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Nullable, dateHelper } from '@ng-sandbox-nova/general';
-import { ThemeColorBlackWhite, ThemeColorFullWithTransparent, ThemeColorIntensity, ThemeColorOpacity, bgColorCss, combineCss } from '@ng-sandbox-nova/styles';
+import { ThemeColorBasic, ThemeColorBlackWhite, ThemeColorFullWithTransparent, ThemeColorIntensity, ThemeColorOpacity, bgColorCss, combineCss, textColorCss } from '@ng-sandbox-nova/styles';
 
 @Component({
   selector: 'core-button',
@@ -13,6 +13,13 @@ import { ThemeColorBlackWhite, ThemeColorFullWithTransparent, ThemeColorIntensit
 export class ButtonComponent implements OnInit, OnChanges {
   @Input()
   label?: string;
+
+  @Input()
+  textColor!: ThemeColorBasic | ThemeColorBlackWhite;
+  @Input()
+  textIntensity!: ThemeColorIntensity;
+  @Input()
+  textOpacity!: ThemeColorOpacity;
 
   @Input()
   bgColor!: ThemeColorFullWithTransparent | ThemeColorBlackWhite;
@@ -45,14 +52,16 @@ export class ButtonComponent implements OnInit, OnChanges {
     this.state = state;
   }
 
-  protected updateCss() {      
+  protected updateCss(additionalCss?: string) {      
     this.css = combineCss(
       "relative inline-flex items-center gap-2",
       "py-2 px-4",
       "disabled:opacity-60",
       "rounded-xl hover:drop-shadow-md transition-all",
       "focus:outline-[1px] focus:outline-dashed focus:outline-offset-2 focus:outline-slate-400",
+      textColorCss(this.textColor ?? 'black', this.textIntensity ?? 'DEFAULT', this.bgOpacity ?? 'full'),
       bgColorCss(this.bgColor ?? 'background', this.bgIntensity ?? 'DEFAULT', this.bgOpacity ?? 'full'),
+      additionalCss,
       this.className
     );
   }
