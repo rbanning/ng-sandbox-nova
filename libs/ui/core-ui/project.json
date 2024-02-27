@@ -22,6 +22,48 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "libs/ui/core-ui/.storybook",
+        "browserTarget": "core-ui:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/core-ui",
+        "configDir": "libs/ui/core-ui/.storybook",
+        "browserTarget": "core-ui:build-storybook",
+        "styles": ["apps/nova/src/styles.scss"],
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "core-ui:build-storybook",
+        "staticFilePath": "dist/storybook/core-ui"
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "core-ui:build-storybook:ci"
+        }
+      }
     }
   }
 }
