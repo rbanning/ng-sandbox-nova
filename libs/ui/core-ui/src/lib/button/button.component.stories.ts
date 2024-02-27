@@ -11,5 +11,8 @@ type Story = StoryObj<ButtonComponent>;
 export const Primary: Story = {
   args: {
     label: 'My Button',
+    bgColor: 'primary',
+    bgIntensity: 'DEFAULT',
+    bgOpacity: 'full'
   },
 };
