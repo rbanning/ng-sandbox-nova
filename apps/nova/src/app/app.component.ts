@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { WelcomeComponent } from './_components/welcome/welcome.component';
+import { FooterComponent } from './_components/footer/footer.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
-  selector: 'ng-sandbox-nova-root',
+  imports: [RouterModule, WelcomeComponent, FooterComponent],
+  selector: 'nova-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
