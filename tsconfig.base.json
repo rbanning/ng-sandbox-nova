@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ng-sandbox-nova/core-ui": ["libs/ui/core-ui/src/index.ts"]
+      "@ng-sandbox-nova/core-ui": ["libs/ui/core-ui/src/index.ts"],
+      "@ng-sandbox-nova/general": ["libs/common/general/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
